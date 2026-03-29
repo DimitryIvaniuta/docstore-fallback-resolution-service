@@ -1,6 +1,7 @@
 package com.github.dimitryivaniuta.gateway.docstore.client;
 
 import com.github.dimitryivaniuta.gateway.docstore.model.StoredDocument;
+
 import java.time.Duration;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,9 +22,9 @@ public final class RetryingDocstoreClientDecorator implements DocstoreClient {
     /**
      * Creates the retrying decorator.
      *
-     * @param delegate wrapped Docstore client
+     * @param delegate    wrapped Docstore client
      * @param maxAttempts maximum call attempts, including the first call
-     * @param backoff backoff between transient retries
+     * @param backoff     backoff between transient retries
      */
     public RetryingDocstoreClientDecorator(DocstoreClient delegate, int maxAttempts, Duration backoff) {
         this.delegate = Objects.requireNonNull(delegate, "delegate must not be null");
@@ -40,7 +41,7 @@ public final class RetryingDocstoreClientDecorator implements DocstoreClient {
     /**
      * Executes the delegate call with transient retry behavior.
      *
-     * @param identifier canonical or legacy Docstore identifier
+     * @param identifier   canonical or legacy Docstore identifier
      * @param documentName logical document name
      * @return document payload or empty optional when not found
      */
